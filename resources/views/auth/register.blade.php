@@ -8,30 +8,53 @@
                 <div class="mb-4">
                     <label for="name" class="sr-only">Name</label>
                     <input type="text" name="name" id="name" placeholder="Your name"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('name') border-red-500 @enderror" value="">
 
                     @error('name')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
                         </div>
                     @enderror
-                        
-                    @enderror
+                                    
                 </div>
                 <div class="mb-4">
-                    <label for="Username" class="sr-only">Username</label>
-                    <input type="text" name="Username" id="Username" placeholder="Username"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+                    <label for="username" class="sr-only">Username</label>
+                    <input type="text" name="username" id="username" placeholder="username"
+                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('username') 
+                    border-red-500 @enderror" value="{{ old('username') }}">
+
+                    @error('name')
+                        <div class="text-red-500 mt-2 text-sm">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
                 </div>
                 <div class="mb-4">
                     <label for="email" class="sr-only">Email</label>
                     <input type="text" name="email" id="email" placeholder="Your email"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('email') 
+                    border-red-500 @enderror" value="{{ old('email') }}">
+
+                    @error('name')
+                        <div class="text-red-500 mt-2 text-sm">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
                 </div>
                 <div class="mb-4">
                     <label for="password" class="sr-only">Password</label>
                     <input type="text" name="password" id="password" placeholder="Choose a password"                  
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('password') 
+                    border-red-500 @enderror" value="">
+
+                    @error('name')
+                        <div class="text-red-500 mt-2 text-sm">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
                 </div>
                 <div class="mb-4">
                     <label for="password_confirmation" class="sr-only">Password again</label>
