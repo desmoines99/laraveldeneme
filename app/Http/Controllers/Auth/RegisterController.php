@@ -27,12 +27,11 @@ class RegisterController extends Controller
             'password' => 'required|confirmed',
         ]);
 
-        $user = User::create([
+        User::create([
             'name'=> $fields['name'],
             'username'=> $fields['username'],
             'email'=> $fields['email'],
             'password'=> bcrypt($fields['password']),
-            
         ]);
 
         // $token = $user->createToken('myapptoken')->plainTextToken;

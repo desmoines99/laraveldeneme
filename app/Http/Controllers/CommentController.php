@@ -31,33 +31,19 @@ class CommentController extends Controller
 
     public function store(Post $post, Request $request)
     {
-        // if($post->commentedBy($request->user())){
-        //     return response(null,409);
-        // }
-        
         $this->validate($request, [
             'body' => 'required'
         ]);
 
         
         $comment = new Comment();
-        // dd($comment);
+
         $comment->post()->associate($post);
         $comment->user()->associate(auth()->user());
 
         $comment->body=$request->body;
         
         $comment->save();
-
-
-        
-
-        // $post->comments()->create([
-        //     'user_id' => $request->user()->id,
-        // ]);
-
-        
-        // $comment()->create($request->only('body'));
 
         return back();
 

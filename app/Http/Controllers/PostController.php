@@ -44,6 +44,8 @@ class PostController extends Controller
         // return Post::create($request->all());
     }
 
+
+    
     public function destroy(Post $post)
     {
         $this->authorize('delete', $post);

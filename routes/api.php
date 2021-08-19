@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Auth\ApiController;
 use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -32,13 +34,12 @@ use App\Http\Controllers\Auth\RegisterController;
 
 
 //Public routes
-Route::post('/register', [RegisterController::class, 'store'] );
+Route::post('/register', [ApiController::class, 'register'] );
 Route::get('/users', [UserController::class, 'index'] );
 Route::get('/users/{id}', [UserController::class, 'show'] );
 Route::get('/users/search/{name}', [UserController::class, 'search']);
-Route::post('/login', [LoginController::class, 'store'] );
-Route::get('/posts', [PostController::class, 'show']);
-Route::post('/login', [LoginController::class, 'store'] );
+Route::get('/posts', [ApiController::class, 'posts']);
+Route::post('/login', [ApiController::class, 'login'] );
 Route::post('/users/{user:username}/posts', [UserPostController::class, 'store']);
 
 
@@ -46,12 +47,16 @@ Route::post('/users/{user:username}/posts', [UserPostController::class, 'store']
 
 //Protected routes
 
-Route::post('/users', [UserController::class, 'store'] );
-Route::put('/users/{id}', [UserController::class, 'update'] );
-Route::delete('/users/{id}', [UserController::class, 'destroy'] );
-Route::post('/logout', [LogoutController::class, 'store'] );
-// Route::group(['middleware' => ['auth:sanctum']], function() {
-// });
+
+Route::group(['middleware' => ['auth:sanctum']], function() {
+    Route::post('/users/{user:id}/posts', [UserPostController::class, 'store']);
+    Route::post('/posts/{post}/comments', [UserPostController::class, 'comment']);
+    Route::post('/users', [UserController::class, 'store'] );
+    Route::put('/users/{id}', [UserController::class, 'update'] );
+    Route::put('/posts/{id}', [ApiController::class, 'updatepost']);
+    Route::delete('/users/{id}', [ApiController::class, 'destroy'] );
+    Route::post('/logout', [ApiController::class, 'logout'] );
+});
 
 
 
