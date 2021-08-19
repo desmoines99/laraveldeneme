@@ -23,15 +23,15 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-Route::get('/', function(){
-    return view('home');
-})->name('home');
+// Route::get('/', function(){
+//     return view('home');
+// })->name('home');
 
 
 
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->name('dashboard');
+// Route::get('/dashboard', [DashboardController::class, 'index'])
+//     ->name('dashboard');
 
 Route::get('/users/{user:username}/posts', [UserPostController::class, 'index'])->name('users.posts');
    
@@ -43,9 +43,9 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts');
-Route::get('/posts/{post}', [PostController::class, 'index'])->name('posts.show');
-Route::post('/posts', [PostController::class, 'store']);
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::post('/', [PostController::class, 'store']);
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 // Route::get('/comments', [CommentController::class, 'index'])->name('comments');
@@ -61,3 +61,4 @@ Route::post('/posts/{post}/dislikes', [PostDislikeController::class, 'store'])->
 Route::delete('/posts/{post}/dislikes', [PostDislikeController::class, 'destroy'])->name('posts.destory');
 
 
+// 

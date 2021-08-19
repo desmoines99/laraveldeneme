@@ -23,8 +23,7 @@ class PostFactory extends Factory
     {
         
         return [
-            
-            'user_id' => $this->faker->unique()->numberBetween(1,10),
+            'user_id' => $this->faker->numberBetween(1,10),
             'body' => $this->faker->sentence(20),
             'created_at' => now(),
             'updated_at' => now(),

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware(['auth'])->only(['store', 'destroy']);
@@ -15,7 +15,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::latest()->with(['user', 'likes', 'dislikes','comments'])->paginate(20);
+        $posts = Post::latest()->with(['user', 'likes', 'dislikes', 'comments'])->paginate(20);
 
         // return $posts;
         return view('posts.index', [
@@ -23,11 +23,10 @@ class PostController extends Controller
         ]);
     }
 
-    public function show()
+    public function show(Post $post)
     {
         return view('posts.show', [
-            // 'post' => $post
-            Post::all(),
+            'post' => $post
         ]);
     }
 
@@ -45,7 +44,7 @@ class PostController extends Controller
     }
 
 
-    
+
     public function destroy(Post $post)
     {
         $this->authorize('delete', $post);
