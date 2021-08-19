@@ -17,15 +17,17 @@ class PostController extends Controller
     {
         $posts = Post::latest()->with(['user', 'likes', 'dislikes','comments'])->paginate(20);
 
+        // return $posts;
         return view('posts.index', [
             'posts' => $posts,
         ]);
     }
 
-    public function show(Post $post)
+    public function show()
     {
         return view('posts.show', [
-            'post' => $post
+            // 'post' => $post
+            Post::all(),
         ]);
     }
 
@@ -39,8 +41,7 @@ class PostController extends Controller
 
         return back();
 
-        
-
+        // return Post::create($request->all());
     }
 
     public function destroy(Post $post)

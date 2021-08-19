@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Laravel\Passport\Passport;
 use App\Models\Post;
 use App\Policies\PostPolicy;
 use Illuminate\Support\Facades\Gate;

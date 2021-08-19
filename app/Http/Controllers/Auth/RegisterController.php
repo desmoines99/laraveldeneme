@@ -20,22 +20,32 @@ class RegisterController extends Controller
     public function store(Request $request){
 
         
-        $this->validate($request, [
+        $fields = $request->validate([
             'name' => 'required|max:255',
             'username' => 'required|max:255',
             'email' => 'required|email|max:255',
             'password' => 'required|confirmed',
         ]);
 
-        User::create([
-            'name'=> $request->name,
-            'username'=> $request->username,
-            'email'=> $request->email,
-            'password'=> Hash::make($request->password),
+        $user = User::create([
+            'name'=> $fields['name'],
+            'username'=> $fields['username'],
+            'email'=> $fields['email'],
+            'password'=> bcrypt($fields['password']),
+            
         ]);
 
-        auth()->attempt($request->only('email', 'password'));
+        // $token = $user->createToken('myapptoken')->plainTextToken;
+
+        // $response = [
+        //     'user' => $user,
+        //     'token' => $token
+        // ];
         return redirect()->route('dashboard');
+
+        // return response($response,201);
         
     }
+
+    
 }

@@ -31,21 +31,22 @@ class CommentController extends Controller
 
     public function store(Post $post, Request $request)
     {
-        if($post->commentedBy($request->user())){
-            return response(null,409);
-        }
+        // if($post->commentedBy($request->user())){
+        //     return response(null,409);
+        // }
         
         $this->validate($request, [
             'body' => 'required'
         ]);
 
+        
         $comment = new Comment();
-
+        // dd($comment);
         $comment->post()->associate($post);
         $comment->user()->associate(auth()->user());
 
         $comment->body=$request->body;
-        // dd($comment);
+        
         $comment->save();
 
 
@@ -64,7 +65,7 @@ class CommentController extends Controller
 
     public function destroy(Comment $comment)
     {
-        $this->authorize('delete', $comment);
+        
 
         $comment->delete();
 

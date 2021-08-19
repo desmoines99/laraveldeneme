@@ -27,6 +27,9 @@ Route::get('/', function(){
     return view('home');
 })->name('home');
 
+
+
+
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
 
@@ -45,10 +48,10 @@ Route::get('/posts/{post}', [PostController::class, 'index'])->name('posts.show'
 Route::post('/posts', [PostController::class, 'store']);
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-Route::get('/comments', [CommentController::class, 'index'])->name('comments');
-Route::get('/posts/{post}/comments', [CommentController::class, 'index'])->name('comments.show');
+// Route::get('/comments', [CommentController::class, 'index'])->name('comments');
+// Route::get('/posts/{post}/comments', [CommentController::class, 'index'])->name('comments.show');
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('posts.comments');
-Route::delete('/posts/{post}/comments', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 
 Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes');

@@ -25,9 +25,17 @@ class Comment extends Model
         return $this->belongsTo(Post::class);
     }
    
-   
-    public function replies()
+    public function ownedBy(User $user)
     {
-        return $this->hasMany(Comment::class);
+        return $user->id === $this->user_id;
     }
+   
+
+
+
+
+    // public function replies()
+    // {
+    //     return $this->hasMany(Comment::class);
+    // }
 }
