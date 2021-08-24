@@ -21,6 +21,8 @@ While running the appplication, I recommend to Run as Administrator. In the app,
     $ git clone https://github.com/desmoines99/laraveldeneme.git
     $ cd laraveldeneme
     $ composer install 
+    $ npm install
+    $ php artisan vendor:publish
     $ php artisan serve
     ```
 
@@ -43,6 +45,11 @@ DB_PASSWORD=
 $ php artisan migrate:fresh
 ```
     - 'migrate:refresh ' reset and re-run all migrations to avoid the overlap datas.
+Seeding the database:
+```
+$ php artisan db:seed
+```
+Now our database is filled with fake 10 users, 100 articles and images(10 to each). We can see them at the home page.
 
 ### Permissions
 - Author/User
