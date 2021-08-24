@@ -44,10 +44,9 @@ DB_PASSWORD=
 ```
 $ php artisan migrate:fresh
 ```
-    - 'migrate:refresh ' reset and re-run all migrations to avoid the overlap datas.
-    
-- Before seeding:    
-    
+   - 'migrate:refresh' reset and re-run all migrations to avoid the overlap datas.
+        
+   ![Before Seeding](https://raw.githubusercontent.com/desmoines99/laraveldeneme/main/before%20seeding.png)
     
 
 Seeding the database:
@@ -55,6 +54,7 @@ Seeding the database:
 $ php artisan db:seed
 ```
 Now our database is filled with fake 10 users, 100 articles and images randomly. We can see all of them at the home page:
+    ![After Seeding](https://raw.githubusercontent.com/desmoines99/laraveldeneme/main/afterseedingAsAGuest.png)
 
 
 
