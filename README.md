@@ -42,7 +42,7 @@ DB_PASSWORD=
 ```
 $ php artisan migrate:fresh
 ```
-'migrate:refresh ' reset and re-run all migrations to avoid the overlap datas.
+    - 'migrate:refresh ' reset and re-run all migrations to avoid the overlap datas.
 
 ### Permissions
 - Author/User
