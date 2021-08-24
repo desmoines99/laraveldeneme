@@ -17,12 +17,12 @@ While running the appplication, I recommend to Run as Administrator. In the app,
 	1.  Go to htdocs folder in the xampp.
 	2.  Open the powershell via **shift+right click** and click to Open PowerShell window here.
 	3. Then enter the commands on the below:
-```	
-$ git clone https://github.com/desmoines99/laraveldeneme.git
-$ cd laraveldeneme
-$ composer install 
-$ php artisan serve
-```
+    ```	
+    $ git clone https://github.com/desmoines99/laraveldeneme.git
+    $ cd laraveldeneme
+    $ composer install 
+    $ php artisan serve
+    ```
 
 - After following commands you can access the website via [http://localhost:8000](http://localhost:8000).
 
