@@ -36,7 +36,7 @@ DB_DATABASE=laraveldeneme
 DB_USERNAME=root
 DB_PASSWORD=
 ```
-###Database
+### Database
 
 - After adjusting the database setting, we can run the migrations to create the tables.
 ```
@@ -44,7 +44,7 @@ $ php artisan migrate:fresh
 ```
 'migrate:refresh ' reset and re-run all migrations to avoid the overlap datas.
 
-###Permissions
+### Permissions
 - Author/User
 	- Can post a article with image, title and composition
 	- Can comment, like and dislike for all posts
@@ -52,7 +52,7 @@ $ php artisan migrate:fresh
 - Guest
 	- Can see the all posts with their interactions.
 
-###Rest Api Applications
+### Rest Api Applications
 - In the code, there is some API functions to ready to use. Postman can send request and receive responses by HTTP protocol methos like GET, POST, PUT and DELETE. I got good results with Postman but you can use another applications.
 
 ```
@@ -79,10 +79,10 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 As we can see on the above some routes are protected and it means, other users cannot send request instead of others. REST API using auth tokens with Laravel Sanctum ,which is package and you can reach more infos via [http://https://laravel.com/docs/8.x/sanctum](http://https://laravel.com/docs/8.x/sanctum), in protected routes. 
 
 
-## Security Vulnerabilities
+### Security Vulnerabilities
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+### License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
