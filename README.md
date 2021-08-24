@@ -45,11 +45,18 @@ DB_PASSWORD=
 $ php artisan migrate:fresh
 ```
     - 'migrate:refresh ' reset and re-run all migrations to avoid the overlap datas.
+    
+- Before seeding:    
+    
+    
+
 Seeding the database:
 ```
 $ php artisan db:seed
 ```
-Now our database is filled with fake 10 users, 100 articles and images(10 to each). We can see them at the home page.
+Now our database is filled with fake 10 users, 100 articles and images randomly. We can see all of them at the home page:
+
+
 
 ### Permissions
 - Author/User
