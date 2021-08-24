@@ -44,7 +44,7 @@ $ php artisan migrate:fresh
 ```
 'migrate:refresh ' reset and re-run all migrations to avoid the overlap datas.
 
-### Permissions
+###Permissions
 - Author/User
 	- Can post a article with image, title and composition
 	- Can comment, like and dislike for all posts
