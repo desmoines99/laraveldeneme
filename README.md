@@ -21,7 +21,7 @@ While running the appplication, I recommend to Run as Administrator. In the app,
 $ git clone https://github.com/desmoines99/laraveldeneme.git
 $ cd laraveldeneme
 $ composer install 
-php artisan serve
+$ php artisan serve
 ```
 
 - After following commands you can access the website via [http://localhost:8000](http://localhost:8000).
