@@ -1,11 +1,26 @@
 @props(['post' => $post])
 
+
 <div>
     <a href="{{ route('users.posts', $post->user) }}" class="font-bold">{{ 
         $post->user->name }}</a> <span class="text-gray-600 text-sm">{{ 
         $post->created_at->diffForHumans() }}</span>
+   
+    <p class="font-extrabold text-3xl">{{ $post->title }}</p>
+    {{-- <td>{{ $post->id }}</td> --}}
+    @if ($post->image)
+    <td><img src="{{ Storage::url($post->image) }}" height="400" width="400" alt="" /></td>
+    @endif
+    {{-- <p class="mb-2">{{ $post->body }}</p> --}}
     
-    <p class="mb-2">{{ $post->body }}</p>
+    <p class="ArticleBody">
+        {{ Str::substr(strip_tags($post->body),0, 300) }}
+        @if (strlen(strip_tags($post->body)) > 10)
+          ... <a href="{{ route('posts.show', $post->slug) }}" class="font-bold btn btn-info btn-sm">Read More</a>
+        @else
+            {!!$post->body!!}
+        @endif
+    </p>
 
     @can('delete', $post)
         <form action="{{ route('posts.destroy', $post) }}" method="post">
@@ -25,7 +40,7 @@
                     <button type="submit" class="text-blue-500">Like</button>
                 </form>
             @else
-                <form action="{{ route('posts.likes', $post) }}" method="post" class="mr-1">
+                <form action="{{ route('posts.likes', $post) }}" method="post" class="mr-1">        
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="text-blue-500">Unlike</button>
@@ -37,6 +52,7 @@
                     @csrf
                     <button type="submit" class="text-blue-500">Dislike</button>
                 </form>
+                
             @else
                 <form action="{{ route('posts.dislikes', $post) }}" method="post" class="mr-1">
                     @csrf
@@ -85,13 +101,13 @@
 
                         <p class="mb-2">{{ $comment->body }}</p>
 
-                        @if ($comment->ownedBy(auth()->user()))
+                        {{-- @if ($comment->ownedBy(auth()->user()))
                             <form action="{{ route('comments.destroy', $comment->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-blue-500">Delete this comment</button>
                             </form>
-                        @endif
+                        @endif --}}
                     @endforeach
                     
                     

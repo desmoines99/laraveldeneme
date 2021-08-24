@@ -33,7 +33,7 @@ use App\Http\Controllers\Auth\RegisterController;
 // Route::get('/dashboard', [DashboardController::class, 'index'])
 //     ->name('dashboard');
 
-Route::get('/users/{user:username}/posts', [UserPostController::class, 'index'])->name('users.posts');
+ Route::get('/users/{user:username}/posts', [UserPostController::class, 'index'])->name('users.posts');
    
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
@@ -44,8 +44,11 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
-Route::post('/', [PostController::class, 'store']);
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+ Route::post('/', [PostController::class, 'store'])->name('post');
+//  Route::post('/posts', [PostController::class, ''])->name('post');
+
+
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 // Route::get('/comments', [CommentController::class, 'index'])->name('comments');
@@ -55,10 +58,10 @@ Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->nam
 
 
 Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes');
-Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('posts.destory');
+Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('likes.destory');
 
 Route::post('/posts/{post}/dislikes', [PostDislikeController::class, 'store'])->name('posts.dislikes');
-Route::delete('/posts/{post}/dislikes', [PostDislikeController::class, 'destroy'])->name('posts.destory');
+Route::delete('/posts/{post}/dislikes', [PostDislikeController::class, 'destroy'])->name('dislikes.destory');
 
 
 // 

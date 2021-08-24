@@ -22,13 +22,15 @@ class UserPostController extends Controller
     public function store(Request $request, User $user)
     {
         $this->validate($request, [
-            'body' => 'required'
+            'body' => 'required',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'title' => 'required'
         ]);
 
-        $user->posts()->create($request->only('body'));
+        $user->posts()->create($request->all());
 
         return response()->json([
-            'message' => 'succes',    
+            'message' => 'success',    
         ])->status(200);
 
     }

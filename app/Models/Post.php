@@ -7,13 +7,17 @@ use App\Models\Comment;
 use App\Models\Dislike;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = [
-        'body'
+        'body',
+        'title',
+        'image',
+        'slug'
     ];
 
     public function likedBy(User $user)
@@ -50,7 +54,16 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
     
-    
+    protected $guarded = ['$id'];
    
 }
