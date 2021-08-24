@@ -49,10 +49,35 @@ $ php artisan migrate:fresh
 	- Can post a article with image, title and composition
 	- Can comment, like and dislike for all posts
 	- Can delete the actions what it can do on the above
-
-![Posting part](C:\Users\sebah\OneDrive\Belgeler\Images\postingScreen.jpg "Posting part")
 - Guest
-	- Can see the all posts with each interactions
+	- Can see the all posts with their interactions.
+
+###Rest Api Applications
+- In the code, there is some API functions to ready to use. Postman can send request and receive responses by HTTP protocol methos like GET, POST, PUT and DELETE. I got good results with Postman but you can use another applications.
+
+```
+//Public routes
+Route::post('/register', [ApiController::class, 'register'] );
+Route::get('/users', [UserController::class, 'index'] );
+Route::get('/users/{id}', [UserController::class, 'show'] );
+Route::get('/users/search/{name}', [UserController::class, 'search']);
+Route::get('/posts', [ApiController::class, 'posts']);
+Route::post('/login', [ApiController::class, 'login'] );
+Route::post('/users/{user:username}/posts', [UserPostController::class, 'store']);
+
+//Protected routes
+Route::group(['middleware' => ['auth:sanctum']], function() {
+    Route::post('/users/{user:id}/posts', [UserPostController::class, 'store']);
+    Route::post('/posts/{post}/comments', [UserPostController::class, 'comment']);
+    Route::post('/users', [UserController::class, 'store'] );
+    Route::put('/users/{id}', [UserController::class, 'update'] );
+    Route::put('/posts/{id}', [ApiController::class, 'updatepost']);
+    Route::delete('/users/{id}', [ApiController::class, 'destroy'] );
+    Route::post('/logout', [ApiController::class, 'logout'] );
+});
+```
+As we can see on the above some routes are protected and it means, other users cannot send request instead of others. REST API using auth tokens with Laravel Sanctum ,which is package and you can reach more infos via [http://https://laravel.com/docs/8.x/sanctum](http://https://laravel.com/docs/8.x/sanctum), in protected routes. 
+
 
 ## Security Vulnerabilities
 
