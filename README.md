@@ -36,7 +36,23 @@ DB_DATABASE=laraveldeneme
 DB_USERNAME=root
 DB_PASSWORD=
 ```
+###Database
 
+- After adjusting the database setting, we can run the migrations to create the tables.
+```
+$ php artisan migrate:fresh
+```
+'migrate:refresh ' reset and re-run all migrations to avoid the overlap datas.
+
+### Permissions
+- Author/User
+	- Can post a article with image, title and composition
+	- Can comment, like and dislike for all posts
+	- Can delete the actions what it can do on the above
+
+![Posting part](C:\Users\sebah\OneDrive\Belgeler\Images\postingScreen.jpg "Posting part")
+- Guest
+	- Can see the all posts with each interactions
 
 ## Security Vulnerabilities
 
