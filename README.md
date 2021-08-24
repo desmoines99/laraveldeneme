@@ -52,7 +52,7 @@ $ php artisan migrate:fresh
 - Guest
 	- Can see the all posts with their interactions.
 
-### Rest Api Applications
+### Rest API Applications
 - In the code, there is some API functions to ready to use. Postman can send request and receive responses by HTTP protocol methos like GET, POST, PUT and DELETE. I got good results with Postman but you can use another applications.
 
 ```
