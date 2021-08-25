@@ -102,8 +102,8 @@ We can see all of them at the home page:
 | ------------ | ------------ | ------------ | ------------ |
 | get  | /users/{user:username}/posts  | UserPostController  | index  |
 | post  | /logout  | LogoutController  | store  |
-|  get | login  | LoginController  | index  |
-| post  | login  | LoginController  | store  |
+|  get | /login  | LoginController  | index  |
+| post  | /login  | LoginController  | store  |
 |  get | /register  | RegisterController  | index  |
 | post  | /register  | RegisterController  | store  |
 | get  | /  | PostController  | index  |
