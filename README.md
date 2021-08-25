@@ -55,8 +55,17 @@ Seeding the database:
 ```
 $ php artisan db:seed
 ```
-Now our database is filled with fake 10 users, 100 articles and images randomly. We can see all of them at the home page:
-**After seeding**
+Now our database is filled with fake 9 users, 100 articles and images randomly.In database we have a specific user  to experience the site via [http://127.0.0.1:8000/login](http://127.0.0.1:8000/login "http://127.0.0.1:8000/login") with the informations where a enter on the below:
+
+![](https://raw.githubusercontent.com/desmoines99/laraveldeneme/main/loginPage.png)
+
+Of course you can register with your own information via [http://127.0.0.1:8000/register](http://127.0.0.1:8000/register "http://127.0.0.1:8000/register")
+
+![](https://raw.githubusercontent.com/desmoines99/laraveldeneme/main/registerPage.png)
+
+We can see all of them at the home page:
+
+**After seeding as a guest** 
     ![](https://raw.githubusercontent.com/desmoines99/laraveldeneme/main/afterseedingAsAGuest.png)
 
 ### Screen Shots-What the user sees
@@ -88,30 +97,59 @@ Now our database is filled with fake 10 users, 100 articles and images randomly.
 - Guest
 	- Can see the all posts with their interactions.
 
+### Web Routes
+| Method of Route  | URl  | Controller  |  Method of Controller |
+| ------------ | ------------ | ------------ | ------------ |
+| get  | /users/{user:username}/posts  | UserPostController  | index  |
+| post  | /logout  | LogoutController  | store  |
+|  get | login  | LoginController  | index  |
+| post  | login  | LoginController  | store  |
+|  get | /register  | RegisterController  | index  |
+| post  | /register  | RegisterController  | store  |
+| get  | /  | PostController  | index  |
+| get  | /posts/{post:slug}  | PostController  | show  |
+| post  | /  | PostController  | post  |
+| get  | /posts/{post:slug}/edit  | PostController  | edit  |
+| put  | /posts/{post:slug}  | PostController  | update  |
+| delete  | /posts/{post}  | PostController  | destroy  |
+| post  | /posts/{post}/comments  | CommentController  | store  |
+| delete  | /comments/{comment}  | CommentController  | destroy  |
+| post |  /posts/{post}/likes | PostLikeController  | store  |
+| delete  | /posts/{post}/likes  | PostLikeController  | destroy  |
+| post | /posts/{post}/dislikes  | PostDislikeController | store |
+| delete  |  /posts/{post}/dislikes | PostDislikeController  | destroy  |
+
+
+
 ### Rest API Applications
 - In the code, there is some API functions to ready to use. Postman can send request and receive responses by HTTP protocol methos like GET, POST, PUT and DELETE. I got good results with Postman but you can use another applications.
 
-```
-//Public routes
-Route::post('/register', [ApiController::class, 'register'] );
-Route::get('/users', [UserController::class, 'index'] );
-Route::get('/users/{id}', [UserController::class, 'show'] );
-Route::get('/users/search/{name}', [UserController::class, 'search']);
-Route::get('/posts', [ApiController::class, 'posts']);
-Route::post('/login', [ApiController::class, 'login'] );
-Route::post('/users/{user:username}/posts', [UserPostController::class, 'store']);
+####Public Routes
+| Method of Route  | URl  | Controller  |  Method of Controller |
+| ------------ | ------------ | ------------ | ------------ |
+| post | /register  | ApiController  | register  |
+| get | /users  | UserController  | index  |
+| get | /users/{id} |  UserController | show  |
+| get |  /users/search/{name} | UserController  | search  |
+| get | /posts  | ApiController  | posts  |
+| post | /login  | ApiController  |  login |
+| post | /users/{user:username}/posts | UserPostController | store  |
 
-//Protected routes
+
+#####Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function() {
-    Route::post('/users/{user:id}/posts', [UserPostController::class, 'store']);
-    Route::post('/posts/{post}/comments', [UserPostController::class, 'comment']);
-    Route::post('/users', [UserController::class, 'store'] );
-    Route::put('/users/{id}', [UserController::class, 'update'] );
-    Route::put('/posts/{id}', [ApiController::class, 'updatepost']);
-    Route::delete('/users/{id}', [ApiController::class, 'destroy'] );
-    Route::post('/logout', [ApiController::class, 'logout'] );
+
+| Method of Route  | URl  | Controller  |  Method of Controller |
+| ------------ | ------------ | ------------ | ------------ |
+| post | /users/{user:id}/posts  | UserPostController:  | store  |
+| post | /posts/{post}/comments  | UserPostController:  | comment  |
+| post | /users |  UserController | store  |
+| put |  /users/{id | UserController  | update  |
+| put | /posts/{id} | ApiController  | updatepost  |
+| delete | /users/{id}  | ApiController  | destroy |
+| post | /logout | ApiControllerr | logout  |
 });
-```
+
 As we can see on the above some routes are protected and it means, other users cannot send request instead of others. REST API using auth tokens with Laravel Sanctum ,which is package and you can reach more infos via [https://laravel.com/docs/8.x/sanctum](https://laravel.com/docs/8.x/sanctum), in protected routes. 
 
 
