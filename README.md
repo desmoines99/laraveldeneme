@@ -57,8 +57,7 @@ Now our database is filled with fake 10 users, 100 articles and images randomly.
 **After seeding**
     ![](https://raw.githubusercontent.com/desmoines99/laraveldeneme/main/afterseedingAsAGuest.png)
 
-### Screen Shots
-- What the user sees
+### Screen Shots-What the user sees
 
 **Home Page**
 ![](https://raw.githubusercontent.com/desmoines99/laraveldeneme/main/homepageAsUser.png)
