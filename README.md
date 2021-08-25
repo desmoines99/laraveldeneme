@@ -4,7 +4,9 @@ The purpose of this repository is to show practices on Laravel 8 to build up a b
 - Register
 - Login
 - Post
-- Comment
+    - Comment
+    - Like/Dislike
+    - Edit
 
 ### Installation
 
