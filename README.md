@@ -61,25 +61,30 @@ Now our database is filled with fake 10 users, 100 articles and images randomly.
 
 ### Screen Shots-What the user sees
 
-**Home Page**
+**Home Page**![](http://127.0.0.1:8000/)
 ![](https://raw.githubusercontent.com/desmoines99/laraveldeneme/main/homepageAsUser.png)
+    - At this page, user can write an article and it can upload any image about it.
 
-**User Page**
+**User Page**![](http://127.0.0.1:8000/users/{user:username}/posts)
 ![](https://raw.githubusercontent.com/desmoines99/laraveldeneme/main/userPage.png)
+    - User/guest can be viewed the all article of any user and the interactions on this page. Just user is allowed to comment, like and dislike. 
 
-**Post Page**
+**Post Page**![](http://127.0.0.1:8000/posts/{post:slug})
 ![](https://raw.githubusercontent.com/desmoines99/laraveldeneme/main/postPage.png)
+    - This page can be reached by 'Read More' link, any visitor can be viewed the page.
 
-**Edit Page**
+**Edit Page**![](http://127.0.0.1:8000//posts/{post:slug}/edit)
 ![](https://raw.githubusercontent.com/desmoines99/laraveldeneme/main/editPage.png)
+    - This page can be reached by 'Edit' link where it is below the article, only user has access the link and can see.
 
 
 
 ### Permissions
 - Author/User
-	- Can post a article with image, title and composition
-	- Can comment, like and dislike for all posts
-	- Can delete the actions what it can do on the above
+	- Can post a article with image, title and composition.
+	- Can comment, like and dislike for all posts.
+	- Can delete the  own actions what it can do on the above.
+	- Can see the all posts with their interactions.
 - Guest
 	- Can see the all posts with their interactions.
 
