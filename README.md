@@ -1,6 +1,6 @@
 # Laravel 8 Blog Example
 
-The purpose of this repository is to show practices on Laravel 8 to build up a basic blog system. This system presents some features for users as ;
+The purpose of this repository is to show practices on Laravel 8 to build up a basic blog system. This system presents some features for users as:
 - Register
 - Login
 - Post
