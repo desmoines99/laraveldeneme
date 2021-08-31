@@ -30,6 +30,7 @@ class PostFactory extends Factory
             'body' => $this->faker->paragraph(50),
             'title' => $title,
             'slug' => $slug,
+            'image' => $this->faker->imageUrl(640, 480, 'animals', true),
             'created_at' => now(),
             'updated_at' => now(),
         ];

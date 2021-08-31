@@ -42,12 +42,7 @@ Route::get('/posts', [ApiController::class, 'posts']);
 Route::post('/login', [ApiController::class, 'login'] );
 Route::post('/users/{user:username}/posts', [UserPostController::class, 'store']);
 
-
-
-
 //Protected routes
-
-
 Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/users/{user:id}/posts', [UserPostController::class, 'store']);
     Route::post('/posts/{post}/comments', [UserPostController::class, 'comment']);

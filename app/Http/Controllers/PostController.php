@@ -65,7 +65,34 @@ class PostController extends Controller
         // return Post::create($request->all());
     }
 
+    public function edit(Post $post)
+    {
+        return view('posts.edit', compact('post'));
+    }
 
+    public function update(Post $post, Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->slug = $request->slug;
+
+        if (isset($request->image)) {
+            $path = $request->file('image')->store('public/images');
+            $post->image = $path;
+        }
+
+        $post->save();
+
+        return view('posts.show', [
+            'post' => $post,
+        ]);
+    }
 
     public function destroy(Post $post)
     {

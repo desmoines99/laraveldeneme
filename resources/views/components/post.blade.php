@@ -2,31 +2,37 @@
 
 
 <div>
-    <a href="{{ route('users.posts', $post->user) }}" class="font-bold">{{ 
+    <a href="{{ route('users.posts', $post->user) }}" class="font-semibold">{{ 
         $post->user->name }}</a> <span class="text-gray-600 text-sm">{{ 
         $post->created_at->diffForHumans() }}</span>
+    <p class="italic font-bold text-3xl">{{ $post->title }}</p>
    
-    <p class="font-extrabold text-3xl">{{ $post->title }}</p>
-    {{-- <td>{{ $post->id }}</td> --}}
     @if ($post->image)
-    <td><img src="{{ Storage::url($post->image) }}" height="400" width="400" alt="" /></td>
+        @if( preg_match('/^https?:\/\//', $post->image))
+            <td><img src="{{ $post->image }}" height="300" width="300" alt="" /></td>
+        @else
+            <td><img src="{{ Storage::url($post->image) }}" height="300" width="300" alt="" /></td>
+        @endif
     @endif
-    {{-- <p class="mb-2">{{ $post->body }}</p> --}}
     
     <p class="ArticleBody">
-        {{ Str::substr(strip_tags($post->body),0, 300) }}
-        @if (strlen(strip_tags($post->body)) > 10)
+        {{ Str::substr(strip_tags($post->body),0, 200) }}
+        @if (strlen(strip_tags($post->body)) > 1)
           ... <a href="{{ route('posts.show', $post->slug) }}" class="font-bold btn btn-info btn-sm">Read More</a>
         @else
             {!!$post->body!!}
         @endif
     </p>
+    @if ($post->user == auth()->user())
+        <a href="{{ route('posts.edit', $post->slug) }}" class="text-blue-500">Edit</a>
+    @endif
+    
 
     @can('delete', $post)
         <form action="{{ route('posts.destroy', $post) }}" method="post">
             @csrf
             @method('DELETE')
-            <button type="submit" class="text-blue-500">Delete</button>
+            <button type="submit" class="text-red-500">Delete</button>
         </form>
     @endcan
 
@@ -43,9 +49,10 @@
                 <form action="{{ route('posts.likes', $post) }}" method="post" class="mr-1">        
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-blue-500">Unlike</button>
+                    <button type="submit" class="text-red-500">Unlike</button>
                 </form>
             @endif
+            
             @if (!$post->dislikedBy(auth()->user()))
                 <form action="{{ route('posts.dislikes', $post->id) }}" method="post" 
                     class="mr-1">
@@ -57,7 +64,7 @@
                 <form action="{{ route('posts.dislikes', $post) }}" method="post" class="mr-1">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-blue-500">Undislike</button>
+                    <button type="submit" class="text-red-500">Undislike</button>
                 </form>
             @endif
         </div>
@@ -72,57 +79,28 @@
             </div>
 
             <br>
-            <div class="w-4/8 bg-white p-6 rounded-lg">               
-                <form action="{{ route('posts.comments', $post->id) }}" method="post" class="mb-2">
-                    @csrf
-                    <div class="mb-4">
-                        <label for="body" class="sr-only">Body</label>
-                        <textarea name="body" id="body" cols="15" rows="4" class="bg-gray-100 
-                        border-2 w-1/2 p-4 rounded-lg @error('body') border-red-500 @enderror" 
-                        placeholder="Comment something!"></textarea>
-
-                        @error('body')
-                            <div class="text-red-500 mt-2 text-sm">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div>
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded font-medium">Comment</button>
-                    </div>
-                </form>
-
+            <div class="w-4/8 bg-white p-6 rounded-lg">                             
                 @if ($post->comments->count())
                     @foreach ($post->comments as $comment)
-                        <a href="{{ route('users.posts', $post->user) }}" class="font-bold">{{ 
+                        <a href="{{ route('users.posts', $post->user) }}" class="font-semibold">{{ 
                             $comment->user->name }}</a> <span class="text-gray-600 text-sm">{{ 
                             $comment->created_at->diffForHumans() }}</span>
 
                         <p class="mb-2">{{ $comment->body }}</p>
 
-                        {{-- @if ($comment->ownedBy(auth()->user()))
+                        @if ($comment->ownedBy(auth()->user()))
                             <form action="{{ route('comments.destroy', $comment->id) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-blue-500">Delete this comment</button>
+                            <button type="submit" class="text-red-500">Delete this comment</button>
                             </form>
-                        @endif --}}
+                        @endif
                     @endforeach
-                    
-                    
-                    
-                    
                 @endif
             </div>
-        
-            {{-- <a href="{{ route('users.comments', $comment->user) }}" class="font-bold">{{ 
-                $comment->user->name }}</a> <span class="text-gray-600 text-sm">{{ 
-                $comment->created_at->diffForHumans() }}</span> --}}
-
-
         @endauth
-
+    
+        
         
 
     </div>

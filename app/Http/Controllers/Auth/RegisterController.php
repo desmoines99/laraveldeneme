@@ -40,7 +40,7 @@ class RegisterController extends Controller
         //     'user' => $user,
         //     'token' => $token
         // ];
-        return redirect()->route('home');
+        return redirect()->route('login');
 
         // return response($response,201);
         

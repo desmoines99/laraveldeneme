@@ -23,40 +23,34 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-// Route::get('/', function(){
-//     return view('home');
-// })->name('home');
-
-
-
-
-// Route::get('/dashboard', [DashboardController::class, 'index'])
-//     ->name('dashboard');
-
- Route::get('/users/{user:username}/posts', [UserPostController::class, 'index'])->name('users.posts');
+Route::get('/users/{user:username}/posts', [UserPostController::class, 'index'])->name('users.posts');
    
+// Auth Routes
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
-
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
+
+// Posting Routes
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
- Route::post('/', [PostController::class, 'store'])->name('post');
-//  Route::post('/posts', [PostController::class, ''])->name('post');
+Route::post('/', [PostController::class, 'store'])->name('post');
+
+Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::put('/posts/{post:slug}', [PostController::class, 'update'])->name('posts.update');
+
 
 
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-// Route::get('/comments', [CommentController::class, 'index'])->name('comments');
-// Route::get('/posts/{post}/comments', [CommentController::class, 'index'])->name('comments.show');
+
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('posts.comments');
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
-
+// Like Dislike
 Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes');
 Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('likes.destory');
 
