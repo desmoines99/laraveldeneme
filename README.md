@@ -124,7 +124,7 @@ We can see all of them at the home page:
 ### Rest API Applications
 - In the code, there is some API functions to ready to use. Postman can send request and receive responses by HTTP protocol methos like GET, POST, PUT and DELETE. I got good results with Postman but you can use another applications.
 
-####Public Routes
+#### Public Routes
 | Method of Route  | URl  | Controller  |  Method of Controller |
 | ------------ | ------------ | ------------ | ------------ |
 | post | /register  | ApiController  | register  |
@@ -136,7 +136,7 @@ We can see all of them at the home page:
 | post | /users/{user:username}/posts | UserPostController | store  |
 
 
-#####Protected routes
+##### Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function() {
 
 | Method of Route  | URl  | Controller  |  Method of Controller |
