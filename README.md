@@ -148,7 +148,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 | put | /posts/{id} | ApiController  | updatepost  |
 | delete | /users/{id}  | ApiController  | destroy |
 | post | /logout | ApiControllerr | logout  |
-});
+
 
 As we can see on the above some routes are protected and it means, other users cannot send request instead of others. REST API using auth tokens with Laravel Sanctum ,which is package and you can reach more infos via [https://laravel.com/docs/8.x/sanctum](https://laravel.com/docs/8.x/sanctum), in protected routes. 
 
